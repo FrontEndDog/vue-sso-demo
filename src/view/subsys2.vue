@@ -28,7 +28,7 @@ export default {
     //刚进入页面的时候,执行一次子系统登录的方法
     this.subLogin()
 
-    // 监听统一登录中心的iframe传来的事件，在统一登录中心登录成功之后，执行子系统登录方法
+    // 监听统一登录中心的iframe传来的事件，在统一登录中心登录成功之后，执行子系统登录
     window.addEventListener('message', event => {
       const data = event.data
       console.log('收到子iframe的消息', data)
@@ -40,13 +40,16 @@ export default {
   methods: {
     //子系统登录
     async subLogin() {
-      //跨域请求统一登录中心,将统一登录中心的cookie带给此接口,之后接口会将cookie返回
+      //跨域请求统一登录中心
+      //注意：这里的接口域名必须和内嵌的统一登录中心iframe是同一个域名，才会带上统一登录中心cookie。
+      //之后接口会返回统一登录中心cookie中的token,这就相当于在子系统中取到了统一登录中心的cookie
       const { data } = await axios.get('https://api-sso-demo.cn.utools.club', {
         withCredentials: true
       })
 
       if (data.code === 0) {
         console.log('单点登录成功，cookie为：', data.data.token)
+        //设置token
         jsCookie.set('token', data.data.token)
         this.token = data.data.token
       } else {
@@ -58,9 +61,10 @@ export default {
     //退出按钮
     logOut() {
       this.removeToken()
+      //向统一登录中心iframe发送消息,告知统一登录中心,我在子系统中退出了
       const iframe = this.$refs.iframe
-      //向子iframe发送消息
       iframe.contentWindow.postMessage({ type: 'logOut' }, '*')
+      //这里还需要向后端接口发送请求,调用退出接口,使token失效
     },
 
     //移除token
