@@ -13,6 +13,7 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+const os = require('os')
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -71,6 +72,15 @@ module.exports = new Promise((resolve, reject) => {
     if (err) {
       reject(err)
     } else {
+      let network = os.networkInterfaces()
+      const messages = [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+      Object.values(network).forEach(item => {
+        item.forEach(item => {
+          if (item.family === 'IPv4') {
+            messages.push(`Your application is running here: http://${item.address}:${port}`)
+          }
+        })
+      })
       // publish the new Port, necessary for e2e tests
       process.env.PORT = port
       // add port to devServer config
@@ -80,7 +90,7 @@ module.exports = new Promise((resolve, reject) => {
       devWebpackConfig.plugins.push(
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
-            messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+            messages: messages
           },
           onErrors: config.dev.notifyOnErrors ? utils.createNotifierCallback() : undefined
         })
