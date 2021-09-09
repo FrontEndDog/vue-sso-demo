@@ -16,7 +16,10 @@ const server = http.createServer((request, response) => {
   //如果cookie中有token,取出token
   let token = ''
   if (request.headers.cookie) {
-    token = request.headers.cookie.match(/token=([^;]*);?/)[1]
+    token = request.headers.cookie.match(/token=([^;]*);?/)
+    if (token) {
+      token = token[1]
+    }
   }
   console.log(token)
 
