@@ -21,7 +21,6 @@ const server = http.createServer((request, response) => {
       token = token[1]
     }
   }
-  console.log(token)
 
   //这里可以添加一个步骤,校验token的有效性。
 

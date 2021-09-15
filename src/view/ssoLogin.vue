@@ -34,7 +34,7 @@ export default {
         jsCookie.remove('token', {
           // Secure: true,
           // SameSite: 'None',
-          Domain: 'localhost'
+          Domain: 'localhost' //这个域名填写统一登录中心的一级域名
         })
       }
     })
@@ -44,7 +44,7 @@ export default {
       //这里需要请求后端登录接口,将账号密码发送给后端,然后后端返回token,这里跳过请求后端的操作,直接将账号密码相加作为token
       const token = this.formModel.account + this.formModel.password
 
-      //取得token后,在统一登录中心域名底下设置cookie
+      //取得登录接口的token后,在统一登录中心域名底下设置cookie
       jsCookie.set('token', token, {
         // Secure: true,
         // SameSite: 'None',
