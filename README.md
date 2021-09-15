@@ -6,10 +6,10 @@
 
 #### 重点文件说明
 
-/src/view/ssoLogin.vue 统一登录中心 所有的子系统都将通过 iframe 内嵌此页面实现登录
-/src/view/subsys1.vue 子系统 1 登录页面
-/src/view/subsys2.vue 子系统 2 登录页面
-/server.js 模拟后端单点登录需要的一个 get 请求接口，此接口也是需要后端配合的地方，此接口部署的域名必须与统一登录中心的域名一致。
+1. /src/view/ssoLogin.vue 统一登录中心 所有的子系统都将通过 iframe 内嵌此页面实现登录
+2. /src/view/subsys1.vue 子系统 1 登录页面
+3. /src/view/subsys2.vue 子系统 2 登录页面
+4. /server.js 模拟后端单点登录需要的一个 get 请求接口，此接口也是需要后端配合的地方，此接口部署的域名必须与统一登录中心的域名一致。
 
 #### 使用说明
 
