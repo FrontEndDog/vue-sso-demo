@@ -22,7 +22,7 @@
 #### 为什么不能用谷歌浏览器测试
 
 谷歌浏览器在 84 版本之后将 cookie 的 SameSite 的默认值由 None 改为了 Lax，不发送第三方 cookie，其他浏览器目前默认值还是 None
-SameSite 属性的详细介绍请参阅 [http://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html](阮一峰的文章)
+SameSite 属性的详细介绍请参阅 [阮一峰的文章](http://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
 要将 SameSite 设置为 None，必须同时设置 Secure 属性，Secure 只能在 https 环境下失效，本地模拟的时候没有 https 环境，所以只能用其他浏览器测试。
 
 #### 生产环境谷歌浏览器如何解决
