@@ -73,11 +73,11 @@ module.exports = new Promise((resolve, reject) => {
       reject(err)
     } else {
       let network = os.networkInterfaces()
-      const messages = [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}/#/ssoLogin  统一登录中心`]
+      const messages = [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}/ssoLogin  统一登录中心`]
       Object.values(network).forEach(item => {
         item.forEach(item => {
           if (item.family === 'IPv4') {
-            messages.push(`Your application is running here: http://${item.address}:${port}/#/subsys${messages.length}  子系统${messages.length}`)
+            messages.push(`Your application is running here: http://${item.address}:${port}/subsys${messages.length}  子系统${messages.length}`)
           }
         })
       })

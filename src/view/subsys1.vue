@@ -1,6 +1,6 @@
 <template>
   <div class="subsys" :style="style">
-    <iframe ref="iframe" class="iframe" src="http://localhost:8080/#/ssoLogin" frameborder="0"></iframe>
+    <iframe ref="iframe" class="iframe" src="http://localhost:8080/ssoLogin" frameborder="0"></iframe>
     <el-card class="tips">
       <p>子系统1</p>
       <p v-show="token">已登录,token为：{{ token }}</p>

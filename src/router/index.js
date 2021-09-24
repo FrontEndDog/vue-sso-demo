@@ -4,6 +4,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
+  base: '/vue-sso-demo/',
+  mode: 'history',
   routes: [
     {
       path: '/',
