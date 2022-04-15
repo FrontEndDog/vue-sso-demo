@@ -5,8 +5,10 @@
   "author": "高位强 <985313519@qq.com>",
   "private": true,
   "scripts": {
+    "all": "concurrently \"npm run dev\" \"npm run server\" \"npm run sslproxy\"",
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "server": "node server",
+    "sslproxy": "local-ssl-proxy --source 4000 --target 3000",
     "build": "node build/build.js"
   },
   "dependencies": {
@@ -28,12 +30,14 @@
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
+    "concurrently": "^7.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "local-ssl-proxy": "^1.3.0",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",

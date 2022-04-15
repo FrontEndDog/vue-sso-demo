@@ -32,8 +32,8 @@ export default {
       //父页面(也就是子系统),点击退出时,移除统一登录中心域名下的token
       if (data.type === 'logOut') {
         jsCookie.remove('token', {
-          // Secure: true,
-          // SameSite: 'None',
+          Secure: true,
+          SameSite: 'None',
           Domain: 'localhost' //这个域名填写统一登录中心的一级域名
         })
       }
@@ -46,8 +46,8 @@ export default {
 
       //取得登录接口的token后,在统一登录中心域名底下设置cookie
       jsCookie.set('token', token, {
-        // Secure: true,
-        // SameSite: 'None',
+        Secure: true,
+        SameSite: 'None',
         Domain: 'localhost' //这个域名填写统一登录中心的一级域名
       })
 

@@ -9,7 +9,7 @@ const server = http.createServer((request, response) => {
   //这里可以添加一个步骤,校验请求的域名是否在白名单中,在白名单中才返回token
 
   //将请求地址设置为允许跨域访问,这里不能用通配符*,不然在谷歌浏览器上的请求取不到cookie
-  response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
+  response.setHeader('Access-Control-Allow-Origin', request.headers.origin || '*')
   response.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS,GET')
   response.setHeader('content-type', 'application/json;charset=UTF-8')
 

@@ -1,6 +1,6 @@
 <template>
   <div class="subsys" :style="style">
-    <iframe ref="iframe" class="iframe" src="http://localhost:8080/ssoLogin" frameborder="0"></iframe>
+    <iframe ref="iframe" class="iframe" src="https://localhost:8080/ssoLogin" frameborder="0"></iframe>
     <el-card class="tips">
       <p>子系统1</p>
       <p v-show="token">已登录,token为：{{ token }}</p>
@@ -43,7 +43,7 @@ export default {
       //跨域请求统一登录中心
       //注意：这里的接口域名必须和内嵌的统一登录中心iframe是同一个域名，才会带上统一登录中心cookie。
       //之后接口会返回统一登录中心cookie中的token,这就相当于在子系统中取到了统一登录中心的cookie
-      const { data } = await axios.get('http://localhost:3000', {
+      const { data } = await axios.get('https://localhost:4000', {
         withCredentials: true
       })
 
